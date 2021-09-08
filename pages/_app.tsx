@@ -5,6 +5,8 @@ import { StylesProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Theme from '../components/Theme';
 import "../styles/global.css";
+import { Provider } from 'react-redux';
+import createStore from '../ducks/createStore';
 
 const CustomApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   useEffect(() => {
@@ -15,12 +17,14 @@ const CustomApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   }, []);
 
   return (
-    <StylesProvider injectFirst>
-      <ThemeProvider theme={Theme}>
-          <CssBaseline />
-          <Component {...pageProps} />
-      </ThemeProvider>
-    </StylesProvider>
+    <Provider store={createStore()}>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={Theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+        </ThemeProvider>
+      </StylesProvider>
+    </Provider>
   );
 };
 
