@@ -4,7 +4,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { StylesProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Theme from '../components/Theme';
-
+import "../styles/global.css";
 
 const CustomApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   useEffect(() => {
