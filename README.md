@@ -1,14 +1,4 @@
-# Feature
-
-クリーンアーキテクチャの手本となるものを目指す。
-
-開発現場でクリーンアーキテクチャが注目され始めているので、フロントエンドで実装したらどういうものになるか検証していく。
-
-
-1. 2021/09/09 wip
-1. 2021/09/08 ものは試し。プロジェクトを作る。
-
-# 構成要素
+# 構成
 
 - TypeScript 
 - Next.js
@@ -16,7 +6,7 @@
 - material-ui
 - tailwindcss
 
-reduxは [re-ducks](https://www.freecodecamp.org/news/scaling-your-redux-app-with-ducks-6115955638be/) パターンというものでサンプルを作ってみた。
+reduxは [re-ducks](https://www.freecodecamp.org/news/scaling-your-redux-app-with-ducks-6115955638be/) パターンで構成した。
 
 # References
 
