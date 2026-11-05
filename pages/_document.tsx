@@ -1,41 +1,24 @@
-import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import { DocumentContext, DocumentProps, Html, Head, Main, NextScript } from 'next/document';
+import {
+  DocumentHeadTags,
+  DocumentHeadTagsProps,
+  documentGetInitialProps,
+} from '@mui/material-nextjs/v16-pagesRouter';
 
-class MyDocument extends Document {
-  render(): JSX.Element {
-    return (
-      <Html lang='ja'>
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
-}
+const MyDocument = (props: DocumentProps & DocumentHeadTagsProps) => (
+  <Html lang='ja'>
+    <Head>
+      <DocumentHeadTags {...props} />
+    </Head>
+    <body>
+      <Main />
+      <NextScript />
+    </body>
+  </Html>
+);
 
 export default MyDocument;
 
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-  const sheets = new ServerStyleSheets();
-  const originalRenderPage = ctx.renderPage;
-
-
-  ctx.renderPage = () => originalRenderPage({
-    enhanceApp: (App) => (props) => sheets.collect(<App {...props} />)
-  });
-
-  const initialProps = await Document.getInitialProps(ctx);
-
-  return {
-    ...initialProps,
-    styles: (
-      <>
-        {initialProps.styles}
-        {sheets.getStyleElement()}
-      </>
-    ),
-  };
+  return await documentGetInitialProps(ctx);
 };
-

@@ -1,32 +1,24 @@
-import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { StylesProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { AppCacheProvider } from '@mui/material-nextjs/v16-pagesRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import Theme from '../components/Theme';
 import "../styles/global.css";
 import { Provider } from 'react-redux';
 import createStore from '../ducks/createStore';
 
-const CustomApp = ({ Component, pageProps }: AppProps): JSX.Element => {
-  useEffect(() => {
-    const jssStyles: Element | null = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement?.removeChild(jssStyles);
-    }
-  }, []);
-
+const CustomApp = (props: AppProps) => {
+  const { Component, pageProps } = props;
   return (
-    <Provider store={createStore()}>
-      <StylesProvider injectFirst>
+    <AppCacheProvider {...props}>
+      <Provider store={createStore()}>
         <ThemeProvider theme={Theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
+          <CssBaseline />
+          <Component {...pageProps} />
         </ThemeProvider>
-      </StylesProvider>
-    </Provider>
+      </Provider>
+    </AppCacheProvider>
   );
 };
 
 export default CustomApp;
-
