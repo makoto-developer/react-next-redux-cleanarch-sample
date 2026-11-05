@@ -28,12 +28,10 @@ const CounterPage: React.FC = () => {
             <button type="button" onClick={onClickDecrement}>
                 down
             </button>
-            <p>counter -> {state.count}</p>
+            <span>counter -&gt; {state.count}</span>
         </p>
         <p>
-            <Link href="/">
-                <a>Go home</a>
-            </Link>
+            <Link href="/">Go home</Link>
         </p>
     </Layout>
   );
